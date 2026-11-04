@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>خطأ</h3>
+<p class="subtitle">{{ message }}</p>
+<a href="{{ url_for('index') }}" class="btn btn-primary w-100">العودة</a>
+{% endblock %}

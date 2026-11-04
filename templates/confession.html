@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>اكتب صراحتك</h3>
+<p class="subtitle">رسالتك مجهولة ولن تظهر إلا للإدارة</p>
+<form method="post">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <textarea class="form-control mb-3" name="message" rows="5"
+            placeholder="اكتب ما يجول في خاطرك..." required></textarea>
+  <button class="btn btn-primary w-100">إرسال</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn btn-link w-100 mt-2 text-muted">خروج</a>
+{% endblock %}

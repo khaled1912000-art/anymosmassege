@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>دخول الأدمن</h3>
+<p class="subtitle">هذه الصفحة مخصصة للإدارة فقط</p>
+<form method="post">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <input class="form-control mb-2" name="username" placeholder="اسم المستخدم" required>
+  <input class="form-control mb-3" type="password" name="password" placeholder="كلمة المرور" required>
+  <button class="btn btn-dark w-100">دخول</button>
+</form>
+{% endblock %}

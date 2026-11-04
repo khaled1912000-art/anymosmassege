@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+cryptography
+pyotp
+qrcode
+python-dotenv

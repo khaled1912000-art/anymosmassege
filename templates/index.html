@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>أدخل رقم هاتفك</h3>
+<p class="subtitle"> لا تشارك الرمز مع احد سنرسل لك رمز تحقق للتأكد من رقمك</p>
+<form method="post" onsubmit="return validatePhone()">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <input class="form-control mb-2" name="phone" id="phoneInput"
+         placeholder="07XXXXXXXX" maxlength="10" inputmode="numeric" required>
+  <div id="phoneError" class="text-danger small mb-3" style="display:none;">
+    الرقم يجب أن يكون 10 أرقام ويبدأ بـ 07
+  </div>
+  <button class="btn btn-primary w-100">إرسال رمز التحقق</button>
+</form>
+<script>
+function validatePhone() {
+  const input = document.getElementById('phoneInput');
+  const error = document.getElementById('phoneError');
+  if (!/^07\d{8}$/.test(input.value.trim())) {
+    error.style.display = 'block';
+    return false;
+  }
+  return true;
+}
+document.getElementById('phoneInput').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g, '').slice(0, 10);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>رمز التحقق</h3>
+<p class="subtitle">أدخل الرمز المكوّن من 6 أرقام</p>
+
+{% if dev_otp %}
+  <div class="text-center">
+    <div class="alert alert-info">
+      رمز التحقق (وضع التطوير)
+      <div class="otp-badge">{{ dev_otp }}</div>
+    </div>
+  </div>
+{% endif %}
+
+<form method="post" onsubmit="return validateCode()">
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <input class="form-control mb-2" name="code" id="codeInput"
+         maxlength="6" inputmode="numeric" placeholder="000000" required>
+  <div id="codeError" class="text-danger small mb-3" style="display:none;">
+    الرمز يجب أن يكون 6 أرقام
+  </div>
+  <button class="btn btn-primary w-100">تحقق</button>
+</form>
+<script>
+function validateCode() {
+  const input = document.getElementById('codeInput');
+  const error = document.getElementById('codeError');
+  if (!/^\d{6}$/.test(input.value.trim())) {
+    error.style.display = 'block';
+    return false;
+  }
+  return true;
+}
+document.getElementById('codeInput').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g, '').slice(0, 6);
+});
+</script>
+{% endblock %}
