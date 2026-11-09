@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>أدخل رقم هاتفك</h3>
-<p class="subtitle"> لا تشارك الرمز مع احد سنرسل لك رمز تحقق للتأكد من رقمك</p>
+<h3>إنشاء حساب مستخدم</h3>
+<p class="subtitle"> أدخل رقمك ولا تشارك الرمز مع احد سنرسل لك رمز تحقق للتأكد من رقمك</p>
 <form method="post" onsubmit="return validatePhone()">
   <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
   <input class="form-control mb-2" name="phone" id="phoneInput"
